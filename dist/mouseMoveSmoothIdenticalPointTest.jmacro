@@ -1,0 +1,8 @@
+//OVERRIDE_LOOP false
+//OVERRIDE_EVENT_DELAY 1000
+//OVERRIDE_INITIAL_DELAY 5000
+mouse(100,100)
+mouse(100,150,smooth)
+mouse(150,150,smooth)
+mouse(150,150,smooth)
+mouse(150,150)

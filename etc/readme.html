@@ -1,0 +1,174 @@
+<h1>JMacro Readme</h1>
+<p>JMacro can be used to automate many tasks. It was designed to be used in conjunction with applications which require a lot of repetitious input (mainly games).</p>
+<p>The macro syntax is described below. The delimiter between commands is any type of whitespace (spaces, tabs, newlines). All durations are entered in milliseconds. All commands are case sensitive. The syntax supports comments in the form of <i>//comment</i> and <i>/*comment*/</i></p>
+<h2>Settings</h2>
+<p>All settings can be overridden within the macro script as detailed in the Commands section below</p>
+<b>Loop</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Check this option if the macro script should never stop executing
+<br/>
+<b>Event Delay</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;The default pause, in milliseconds, between each command. Note that JMacro attempts to "catch back up" if it detects that a macro is taking longer than it should based on the event delay (example: a macro with 10 events and an event delay of 500 should take about 5 seconds to execute). For this reason, be careful when setting the event delay to 0, as this will cause a macro execution to behave unexpectedly, especially with pauses
+<br/>
+<b>Initial Start Delay</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;The amount of time to pause between pressing the Start button and starting the macro
+<h2>Commands</h2>
+<h3>Input Commands</h3>
+<ul>
+<li>Letters <b>A-Z</b> - must be capitalized</li>
+<li>Numbers <b>0-9</b></li>
+<li><b>mouseLeft</b> - left mouse button</li>
+<li><b>mouseRight</b> - right mouse button</li>
+<li><b>mouseMiddle</b> - middle mouse button</li>
+<li>Function keys <b>f1-f12</b> - must use lowercase 'f'</li>
+<li><b>enter</b></li>
+<li><b>space</b></li>
+<li><b>esc</b></li>
+<li><b>tab</b></li>
+<li><b>shift</b></li>
+<li><b>ctrl</b></li>
+<li><b>alt</b></li>
+<li><b>scrollLock</b></li>
+<li><b>break</b> - some keyboards have this as the "Pause" key</li>
+<li><b>numLock</b></li>
+<li><b>capsLock</b></li>
+<li><b>backspace</b></li>
+<li><b>insert</b></li>
+<li><b>delete</b></li>
+<li><b>home</b></li>
+<li><b>end</b></li>
+<li><b>pageUp</b></li>
+<li><b>pageDown</b></li>
+<li><b>up</b> - arrow key</li>
+<li><b>down</b> - arrow key</li>
+<li><b>left</b> - arrow key</li>
+<li><b>right</b> - arrow key</li>
+</ul>
+<i>command</i>
+</br>
+<i>command</i> ( <i>duration</i> )
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Hold input down for <i>duration</i> milliseconds
+</br>
+<i>command</i> ( <i>duration</i> , continue )
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Hold input down for <i>duration</i> milliseconds and proceed with script without waiting for this command to complete
+</br>
+<h3>Looping Commands</h3>
+<b>loop ( <i>count</i> , <i>command(s)</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Loop the specified <i>command(s)</i> <i>count</i> times
+<br/>
+<b>timedLoop ( <i>duration</i> , <i>command(s)</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Loop over the specified <i>command(s)</i> until <i>duration</i> milliseconds has passed. The last looped iteration may exceed the <i>duration</i>
+<br/>
+<b>exitLoop</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Stops the innermost loop currently executing and resumes after that loop. If current execution is not inside a loop, the macro will stop and return the beginning if the macro is set to loop
+<h3>Pause Command</h3>
+<b>pause ( <i>duration</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Pause for <i>duration</i> milliseconds. A pause command will override any default pause between events
+<h3>Mouse Move Command</h3>
+<b>mouse( <i>x</i> , <i>y</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Move the mouse to the specified coordinates. To measure coordinate location, the current mouse coordinates are always displayed in the lower-right corner of the JMacro window
+<br/>
+<b>mouse( <i>x</i> , <i>y</i> , smooth )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Supplying the "smooth" argument to the mouse movement command will cause the event to move the mouse in a straight line between the origin point and the destination point, passing each coordinate along the way. This allows JMacro to better simulate the user manually moving a mouse from coordinate to coordinate
+<h3>Color Conditional Command</h3>
+<b>ifColor( <i>x</i> , <i>y</i> , #<i>color</i> , <i>command(s)</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;If the pixel at screen coordinate [<i>x</i>,<i>y</i>] is <i>color</i>, perform the specified <i>command(s)</i>
+<br/>
+<b>ifNotColor( <i>x</i> , <i>y</i> , #<i>color</i> , <i>command(s)</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Opposite of ifColor command. If the pixel at screen coordinate [<i>x</i>,<i>y</i>] is not <i>color</i>, perform the specified <i>command(s)</i>
+<h3>Stop Command</h3>
+<b>stop</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Stops the macro as if the user pressed the "Stop" button
+<!--<h3>Synchronize Command</h3>
+<b>synchronize( <i>IP Address</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This command is used to synchronize two instances of JMacro, or cause one macro to wait for another to reach the synchronize command. Both instances of JMacro must specify the command, and both commands must specify the other JMacro client's IP address. This command will not work properly if the two clients are behind different routers. Also, be careful, as this command introduces the risk of the script deadlocking
+<br/>
+<b>synchronize( <i>IP address</i> , <i>local port</i> , <i>remote port</i> )</b>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;The same as the single argument <i>synchronize</i> command, except specific ports may be specified-->
+<br/>
+<h3>Setting Overrides</h3>
+<b>//override_loop (true|false)</b>
+<br/>
+<b>//override_event_delay <i>milliseconds</i></b>
+<br/>
+<b>//override_initial_delay <i>milliseconds</i></b>
+<h2>Examples</h2>
+<p><b>Press the left mouse button, then press W for ten seconds</b></p>
+mouseLeft
+</br>
+W(10000)
+<p><b>While holding down shift and the W key, click the left mouse button repeatedly for twenty seconds</b></p>
+shift(20000, continue)
+</br>
+W(20000, continue)
+</br>
+timedLoop(20000, mouseLeft)
+<p><b>If the pixel color at the specified location is red, click the left mouse button</b></p>
+ifColor( 525, 600, #FF0000,
+</br>
+&nbsp;&nbsp;&nbsp;&nbsp;mouseLeft
+</br>
+)
+<!--<p><b>The following two scripts will run on separate machines and synchronize with each other around the middle of the scripts before proceeding</b></p>
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>Script running on machine with IP address <b>100.100.0.100</b>...</td>
+    </tr>
+</table>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>
+            timedLoop(60000,
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;mouseLeft
+            <br/>
+            )
+            <br/>
+            synchronize(100.100.0.101)
+            <br/>
+            space
+        </td>
+    </tr>
+</table>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>Script running on machine with IP address <b>100.100.0.101</b>...</td>
+    </tr>
+</table>
+<br/>
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>
+            timedLoop(60000,
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;mouseLeft
+            <br/>
+            )
+            <br/>
+            synchronize(100.100.0.100)
+            <br/>
+            enter
+        </td>
+    </tr>
+</table>-->

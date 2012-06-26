@@ -1,0 +1,58 @@
+<h3>RELEASE 1.7</h3>
+<ul>
+<li>Added the <i>mouse(..., smooth)</i> command. This command will function like the older mouse events with the exception that it will simulate a user sliding the mouse (and passing each mouse coordinate along the way)</li>
+</ul>
+<h3>RELEASE 1.6.3</h3>
+<ul>
+<li>Added a warning message for event delays of less than 100 regarding odd execution timing behavior</li>
+</ul>
+<h3>RELEASE 1.6.2</h3>
+<ul>
+<li>Fixed the issue that had been introduced to parsing errors with the <i>space</i>, <i>shift</i>, and <i>scrollLock</i> commands</li>
+</ul>
+<h3>RELEASE 1.6.1</h3>
+<ul>
+<li>Quick backend tweak to how input events are generated</li>
+</ul>
+<h3>RELEASE 1.6</h3>
+<ul>
+<li>Added the <i>exitLoop</i> and <i>stop</i> commands</li>
+</ul>
+<h3>RELEASE 1.5.3</h3>
+<ul>
+<li>Fixed some more issues with extended pauses. JMacro should now use less CPU while paused. Additionally, executing scripts that have been paused for over 10 minutes will now automaticall stop</li>
+</ul>
+<h3>RELEASE 1.5.2</h3>
+<ul>
+<li>Fixed an issue where macro events placed after block events like loops and ifColors would not give themselves enough time to execute</li>
+</ul>
+<h3>RELEASE 1.5.1</h3>
+<ul>
+<li>Further tweaked timing logic. At this point, a macro with 60 commands with a default event delay of 1000 milliseconds should take very close to 60 seconds to completely run</li>
+<li>Fixed an error that would occur after JMacro had been left running on loop for extremely long periods of time. However, some other errors involving long runs of JMacro may still exist</li>
+</ul>
+<h3>RELEASE 1.5</h3>
+<ul>
+<li>Added the <i>ifColor</i> and <i>ifNotColor</i> commands</li>
+<li>Fixed an issue with event duration time. Previously, on slower machines, macro events could take longer than the specified time. Because this has been fixed, timing intensive macro scripts written for previous versions should be retested to ensure their timing is still correct</li>
+<li>Fixed an issue where pausing would not work if the macro was at a point after a loop or timedLoop command</li>
+<!--<li>Added the <i>synchronize</i> command</li>-->
+</ul>
+<h3>RELEASE 1.4</h3>
+<ul>
+<li>Fixed an issue where mouse click commands were issuing left clicks for the mouseRight and mouseMiddle commands</li>
+</ul>
+<h3>RELEASE 1.3</h3>
+<ul>
+<li>Added missing non-alphanumeric key commands</li>
+<li>Clicking on JMacro window when it previously did not have focus will now pause the macro</li>
+</ul>
+<h3>RELEASE 1.2</h3>
+<ul>
+<li>More context information is given during loop iterations and pause durations</li>
+<li>Saving and opening JMacro scripts now starts in the JMacro directory</li>
+</ul>
+<h3>RELEASE 1.1</h3>
+<ul>
+<li>Fixed error when parenthesis were unbalanced</li>
+</ul>

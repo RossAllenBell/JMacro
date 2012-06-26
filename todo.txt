@@ -1,0 +1,13 @@
+-start at a arbitrary point halfway through
+-mouse down/up events
+-window focusing command
+--LATER
+-error report submission capability
+-variance option to change timings just slightly and wiggle the mouse every now and then
+-record macro functionality
+-make error messages consistent with where they indicate the error
+-functions, variables
+-fully test error detection
+-import other macro programs' scripts
+--NOT WORTH TIME
+-pause button on keyboard

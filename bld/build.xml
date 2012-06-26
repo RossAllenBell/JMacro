@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="JMacro" default="help" basedir=".">
+	<description>Builds, tests, and runs my portfolio.</description>
+	<property environment="env" />
+	<property file="build.properties" />
+
+	<property name="source.name" value="${ant.project.name}" />
+	<property name="src.jar" value="${dist}/JMacro.jar" />
+
+	<path id="compile.classpath">
+		<fileset dir="${java.lib}">
+			<include name="**/*.jar" />
+		</fileset>
+
+		<pathelement path="${src.classes}" />
+	</path>
+
+	<target name="banner">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<echo message="#" />
+		<echo message="# ${source.name}" />
+		<echo message="# ${source.desc}" />
+		<echo message="#" />
+		<echo message="" />
+	</target>
+
+	<!-- Print's out the project help -->
+	<target name="help" depends="banner" description="This Display.">
+		<description>
+
+//*****************************************************************
+
+Builds the project. 
+
+Typically, you would INVOKE: 
+
+ant all    // For a complete build from scratch
+ant build  // For a rebuild
+ant        // For this help display
+
+//*****************************************************************
+    </description>
+		<java fork="no" classname="org.apache.tools.ant.Main">
+			<arg line="-f build.xml -projecthelp" />
+		</java>
+	</target>
+
+	<target name="clean" depends="banner" description="Cleans this project.">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="prepare" depends="banner">
+		<!--
+            Prepares the BUILD directory for a build.
+            Sets up build's directrory structure.
+    -->
+		<mkdir dir="${src.classes}" />
+	</target>
+
+	<!-- Compile base value object -->
+	<target name="compile" depends="prepare">
+
+		<!-- Compiles SOURCE code into the CLASSES directory. -->
+		<javac srcdir="${src}" destdir="${src.classes}" includes="**/*.java" deprecation="${deprecation}" debug="${debug}">
+			<classpath refid="compile.classpath" />
+			<compilerarg value="-Xlint"/> 
+		</javac>
+
+
+		<!-- Copies SOURCE code and RESOURCES into the CLASSES directory. -->
+		<copy todir="${src.classes}">
+			<fileset dir="${src}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${dist}">
+            <fileset dir="${etc}"/>
+        </copy>
+	</target>
+
+	<target name="build" depends="compile" description="Compiles and Jars this project.">
+
+		<!-- Jars up the SOURCE CLASSES directory into an EJB jar. -->
+		
+		<jar jarfile="${src.jar}">
+					<fileset dir="${src.classes}">
+						<include name="**/**" />
+					</fileset>
+					<fileset dir="${resources}">
+                        <include name="**/**" />
+                    </fileset>
+					<manifest>
+						<attribute name="Main-Class" value="org.jmacro.MacroMain" />
+					</manifest>
+				</jar>
+	</target>
+	
+	<target name="createZip" depends="build">
+		<delete file="${dist}/JMacro*.zip" />
+		<mkdir dir="${dist}/JMacro" />
+		<copy todir="${dist}/JMacro">
+			<fileset dir="${dist}">
+				<include name="**/JMacro.jar"/>
+				<include name="**/readme.html"/>
+				<include name="**/release_notes.html"/>
+				<include name="**/Console_Mode.bat"/>
+			</fileset>
+		</copy>	    
+	    <taskdef name="jmacrozip" classname="org.jmacro.ant.JMacroZip">
+	    	<classpath refid="compile.classpath" />	
+	    </taskdef>
+		<jmacrozip destfile="${dist}/JMacro">
+			<fileset dir="${dist}">
+				<include name="**/JMacro"/>
+				<include name="JMacro/**"/>
+			</fileset>
+		</jmacrozip>
+		<delete dir="${dist}/JMacro" />
+	</target>
+
+	<!-- Simulate an ant clean build deploy javadoc for convenience. -->
+	<!-- <target name="all" depends="clean,deploy,javadoc" description="Alias for 'clean build deploy javadoc'."> -->
+	<target name="all" depends="clean,createZip">
+	</target>
+	
+</project>

@@ -1,0 +1,20 @@
+//OVERRIDE_LOOP true
+//OVERRIDE_EVENT_DELAY 1000
+//OVERRIDE_INITIAL_DELAY 5000
+
+loop(2,
+    A
+    loop(9999,
+        B
+        ifColor(1914, 1183, #1286E2,
+            exitLoop
+        )
+        C
+    )
+    D
+)
+E
+ifColor(1914, 1183, #1286E2,
+    exitLoop
+)
+F

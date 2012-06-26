@@ -1,0 +1,14 @@
+//OVERRIDE_LOOP false
+//OVERRIDE_EVENT_DELAY 1000
+//OVERRIDE_INITIAL_DELAY 5000
+down
+pause(2000)
+up
+pause(2000)
+down
+pause(2000)
+up
+pause(2000)
+down
+up
+down

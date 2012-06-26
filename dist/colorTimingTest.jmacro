@@ -1,0 +1,10 @@
+//OVERRIDE_LOOP false
+//OVERRIDE_EVENT_DELAY 1000
+//OVERRIDE_INITIAL_DELAY 5000
+ifColor(1704, 1190, #2660DD,
+    up
+    pause(5000)
+    down
+)
+up
+down
